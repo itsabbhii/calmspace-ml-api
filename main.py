@@ -8,15 +8,17 @@ import json
 import pickle
 import re
 
+
 app = FastAPI()
 
 # Load model
 model = tf.keras.models.load_model("stress_model.h5")
 
-# Load tokenizer
-with open("tokenizer.json") as f:
+
+with open('tokenizer.json') as f:
     data = json.load(f)
-    tokenizer = tokenizer_from_json(data)
+
+tokenizer = tokenizer_from_json(json.dumps(data))
 
 # Load label encoder
 with open("label_encoder.pkl", "rb") as f:
